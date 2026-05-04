@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
-     // NAV SCROLL
+    // NAV SCROLL
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), { passive: true });
+
 
     // MOBILE MENU
     const mob = document.getElementById('mob');
@@ -110,5 +111,44 @@ document.addEventListener("DOMContentLoaded", function() {
       if (e.key === 'Escape') lbClose();
       if (e.key === 'ArrowLeft') lbNav(-1);
       if (e.key === 'ArrowRight') lbNav(1);
+    });
+
+    // REEL VIDEO PLAYER
+    const isTouch = window.matchMedia('(hover: none)').matches;
+    document.querySelectorAll('.rvcard').forEach(card => {
+      const vid = card.querySelector('.rv-vid');
+      const muteBtn = card.querySelector('.rv-mute');
+
+      function play() {
+        vid.play().catch(() => {});
+        card.classList.add('rv-playing');
+      }
+      function stop() {
+        vid.pause();
+        vid.currentTime = 0;
+        vid.muted = true;
+        card.classList.remove('rv-playing');
+        if (muteBtn) { muteBtn.classList.remove('rv-unmuted'); muteBtn.setAttribute('aria-label', 'Activar sonido'); }
+      }
+
+      if (isTouch) {
+        card.addEventListener('click', () => {
+          if (card.classList.contains('rv-playing')) { stop(); return; }
+          document.querySelectorAll('.rvcard.rv-playing').forEach(c => { if (c !== card) { c.querySelector('.rv-vid').pause(); c.classList.remove('rv-playing'); } });
+          play();
+        });
+      } else {
+        card.addEventListener('mouseenter', play);
+        card.addEventListener('mouseleave', stop);
+      }
+
+      if (muteBtn) {
+        muteBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          vid.muted = !vid.muted;
+          muteBtn.classList.toggle('rv-unmuted', !vid.muted);
+          muteBtn.setAttribute('aria-label', vid.muted ? 'Activar sonido' : 'Silenciar');
+        });
+      }
     });
 });
