@@ -1,8 +1,6 @@
 {
-  "version": 2,
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "^/home/?$", "dest": "/HTML/index.html" },
-    { "src": "^/cuidados/?$", "dest": "/HTML/cuidados.html" }
+  "rewrites": [
+    { "source": "/home", "destination": "/HTML/index.html" },
+    { "source": "/cuidados", "destination": "/HTML/cuidados.html" }
   ]
 }
