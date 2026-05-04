@@ -1,6 +1,7 @@
 {
-  "routes": [
-    { "src": "^/$", "dest": "/HTML/index.html" },
-    { "src": "^/cuidados$", "dest": "/HTML/cuidados.html" }
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/HTML/index.html" },
+    { "source": "/cuidados", "destination": "/HTML/cuidados.html" }
   ]
 }
