@@ -1,7 +1,8 @@
 {
   "cleanUrls": true,
-  "rewrites": [
-    { "source": "/", "destination": "/HTML/index.html" },
-    { "source": "/cuidados", "destination": "/HTML/cuidados.html" }
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "^/$", "dest": "/HTML/index.html" },
+    { "src": "^/cuidados$", "dest": "/HTML/cuidados.html" }
   ]
 }
