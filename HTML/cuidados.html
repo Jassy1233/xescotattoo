@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuidados del Tatuaje — XESCO Anime Ink · Murcia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Serif+JP:wght@300;400;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/CSS/style.css">
+  <style>
+    /* PAGE-SPECIFIC */
+    .care-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(17,18,21,.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .care-back {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      transition: color .3s;
+    }
+    .care-back:hover { color: var(--red2); }
+    .care-nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: .12em;
+      background: linear-gradient(135deg, var(--red2), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* HERO */
+    .care-hero {
+      position: relative;
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .care-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+    }
+    .care-hero .kanji-deco {
+      position: absolute;
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 700;
+      color: rgba(160,104,64,.04);
+      pointer-events: none;
+      user-select: none;
+    }
+    .care-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .care-hero-content .tag { justify-content: center; }
+    .care-h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      line-height: .95;
+      letter-spacing: .03em;
+      margin: .5rem 0 1.2rem;
+    }
+    .care-h1-hl {
+      background: linear-gradient(135deg, var(--red2), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .care-hero-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+    .care-hero-sub strong { color: var(--txt); font-weight: 700; }
+    .care-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem 1.3rem;
+      background: rgba(160,104,64,.12);
+      border: 1px solid rgba(160,104,64,.3);
+      border-radius: 20px;
+      font-size: .82rem;
+      color: var(--red2);
+      font-weight: 600;
+    }
+
+    /* STEPS */
+    .care-steps {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .care-step {
+      display: flex;
+      align-items: stretch;
+      gap: 2rem;
+      padding: 2.2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      transition: background .3s;
+    }
+    .care-step:first-child { border-top: 1px solid rgba(255,255,255,.06); }
+    .care-step:hover { background: rgba(160,104,64,.04); padding-left: .5rem; padding-right: .5rem; border-radius: 8px; margin: 0 -.5rem; }
+    .care-step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: rgba(160,104,64,.2);
+      min-width: 68px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    .care-step-k {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 2rem;
+      color: rgba(160,104,64,.28);
+      min-width: 44px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    .care-step-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: .6rem;
+    }
+    .care-step-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.85rem;
+      letter-spacing: .05em;
+      color: var(--txt);
+      line-height: 1;
+    }
+    .care-step-freq {
+      font-size: .78rem;
+      color: var(--red2);
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .care-step-desc {
+      font-size: .93rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .care-step-desc strong { color: var(--txt); }
+    .care-warn-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .3rem .8rem;
+      background: rgba(212,160,23,.1);
+      border: 1px solid rgba(212,160,23,.25);
+      border-radius: 20px;
+      font-size: .75rem;
+      color: var(--gold2);
+      font-weight: 600;
+      width: fit-content;
+    }
+    .care-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      margin-top: .2rem;
+    }
+    .care-list li {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .care-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--red2);
+      font-size: .8rem;
+    }
+    .care-list li strong { color: var(--txt); }
+
+    /* WARNINGS */
+    .care-warnings {
+      padding: 0 2rem 4.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .care-warn-box {
+      background: rgba(212,160,23,.06);
+      border: 1px solid rgba(212,160,23,.22);
+      border-left: 4px solid var(--gold);
+      border-radius: 14px;
+      padding: 2rem 2.2rem;
+    }
+    .care-warn-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: .07em;
+      color: var(--gold2);
+      margin-bottom: 1.4rem;
+    }
+    .care-warn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem;
+    }
+    .care-warn-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.55;
+      padding: .7rem .9rem;
+      background: rgba(0,0,0,.25);
+      border-radius: 8px;
+      border: 1px solid rgba(212,160,23,.1);
+    }
+    .care-warn-main {
+      grid-column: span 2;
+      background: rgba(160,104,64,.12);
+      border-color: rgba(160,104,64,.3);
+      color: var(--red2);
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .04em;
+      justify-content: center;
+    }
+
+    /* CTA */
+    .care-cta {
+      padding: 4rem 2rem 5rem;
+      text-align: center;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+    .care-cta p {
+      color: var(--muted);
+      font-size: .93rem;
+      margin-bottom: 1.8rem;
+    }
+    .care-cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .care-nav { padding: .9rem 1.2rem; }
+      .care-hero { padding: 4rem 1.2rem 3.5rem; }
+      .care-steps { padding: 3rem 1.2rem; }
+      .care-step { flex-wrap: wrap; gap: .8rem; }
+      .care-step-num { font-size: 2.5rem; min-width: 44px; }
+      .care-step-k { font-size: 1.6rem; min-width: 36px; }
+      .care-warnings { padding: 0 1.2rem 3.5rem; }
+      .care-warn-grid { grid-template-columns: 1fr; }
+      .care-warn-main { grid-column: span 1; }
+      .care-cta { padding: 3rem 1.2rem 4rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="care-nav">
+    <a href="index.html" class="care-back">← Volver al portfolio</a>
+    <span class="care-nav-logo">XESCO 墨</span>
+    <a href="https://wa.me/34609810981" target="_blank" class="btn-main" style="font-size:.8rem;padding:.5rem 1.1rem">💬 Cita</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="care-hero">
+    <div class="kanji-deco" style="font-size:300px;right:1%;top:0;opacity:.6">癒</div>
+    <div class="kanji-deco" style="font-size:140px;left:2%;bottom:5%;animation-delay:2s">洗</div>
+    <div class="care-hero-content rev">
+      <div class="tag">Guía de cuidados</div>
+      <h1 class="care-h1">Cuida tu<br><span class="care-h1-hl">Tatuaje</span></h1>
+      <p class="care-hero-sub">Sigue estos pasos durante las <strong>2 semanas de curación</strong> para que tu obra quede perfecta para siempre.</p>
+      <span class="care-badge">📅 2 semanas · Empieza al día siguiente</span>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="care-steps">
+
+    <div class="care-step rev">
+      <div class="care-step-num">01</div>
+      <div class="care-step-k">洗</div>
+      <div class="care-step-body">
+        <div class="care-step-title">Lavado diario</div>
+        <div class="care-step-freq">3 veces al día · Mañana / Tarde / Noche</div>
+        <div class="care-step-desc">
+          Lavar con <strong>jabón de pH neutro</strong>, frotando suavemente con la yema del dedo.
+          Secar a toques con <strong>papel de cocina</strong>.
+        </div>
+        <span class="care-warn-inline">⚠️ NO usar papel del baño ni toalla</span>
+      </div>
+    </div>
+
+    <div class="care-step rev">
+      <div class="care-step-num">02</div>
+      <div class="care-step-k">潤</div>
+      <div class="care-step-body">
+        <div class="care-step-title">Aplicar crema</div>
+        <div class="care-step-freq">A partir de las 48h · 2 veces al día · Mañana y Noche</div>
+        <div class="care-step-desc">
+          Aplicar crema (<strong>AQUAPHOR de Eucerin</strong> recomendada) con las manos limpias
+          justo después del lavado.
+        </div>
+        <ul class="care-list">
+          <li>Muy poca cantidad — <strong>un granito de arroz</strong></li>
+          <li>Frotar muy muy suave hasta que la piel absorba bien</li>
+          <li><strong>NO dejar capa de crema encima</strong></li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- WARNINGS -->
+  <section class="care-warnings">
+    <div class="care-warn-box rev">
+      <div class="care-warn-title">⚠️⚠️ Cosas que Evitar</div>
+      <div class="care-warn-grid">
+        <div class="care-warn-item">🐾 Acercarse a mascotas (pelos o lametones)</div>
+        <div class="care-warn-item">☀️ Sol directo en el tatuaje</div>
+        <div class="care-warn-item">🏊 Agua de playa o piscina</div>
+        <div class="care-warn-item">👕 Roces con ropa ajustada · llevar ropa ancha</div>
+        <div class="care-warn-item care-warn-main">🚫 RASCARSE EL TATUAJE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="care-cta">
+    <p>¿Tienes dudas sobre el cuidado de tu tatuaje? Escríbeme directamente.</p>
+    <div class="care-cta-btns">
+      <a href="https://wa.me/34609810981" target="_blank" class="btn-main" style="font-size:1rem;padding:1rem 2.2rem">💬 Escríbeme por WhatsApp</a>
+      <a href="index.html" class="btn-ghost" style="font-size:1rem;padding:1rem 2.2rem">← Ver portfolio</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-in">
+      <div class="foot-logo">XESCO 墨</div>
+      <div class="foot-txt">© 2026 XESCO Tattoo · Especialista Anime Ink · Ganga Tattoo Spain, El Palmar, Murcia</div>
+      <a href="https://www.instagram.com/xesco.tattoo/" target="_blank" class="foot-ig">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @xesco.tattoo
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); ro.unobserve(e.target); } });
+    }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rev').forEach(el => ro.observe(el));
+  </script>
+
+</body>
+</html>
